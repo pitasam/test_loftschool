@@ -374,7 +374,8 @@ td{
   background: url("../img/dotted-g.png");
   background-position: top ;
   background-repeat: repeat-x;
-  //background-size: 1050px;
+  padding-top: 25px;
+  margin-bottom: 30px;
 }
 .in-total{
   font-family: 'pf_beausans_proregular', sans-serif, Arial;
@@ -389,9 +390,6 @@ td{
   padding-right: 10px;
 }
 
-.basket-result__in-total{
-  padding-top: 25px;
-}
 .in-total__num{
   font-weight: bold;
   display: inline-block;

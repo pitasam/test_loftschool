@@ -38,22 +38,15 @@ function countInTotal() {
         basketInTotal = 0,
         allResult = $('.result');
 
-    console.log('allResult');
-    console.log(allResult);
-
 
     var arrayResult = [];
     for(var key in allResult){
         arrayResult[key] = allResult[key];
     }
 
-    console.log('arrayResult');
-    console.log(arrayResult);
-
     $(arrayResult).each(function (i) {
         basketResult += parseInt($(arrayResult[i]).text().substring(0, $(arrayResult[i]).text().length-2));
-        console.log('array basketResult');
-        console.log(basketResult);
+
     });
 
     basketResultNDS = Math.ceil(basketResult * 0.18);
@@ -62,18 +55,12 @@ function countInTotal() {
     $('.basket-result__cost').text(basketResult + ' P');
     $('.basket-result__cost-nds').text(basketResultNDS + ' P');
     $('.in-total__num').text(basketInTotal + ' P');
-    console.log('basketResult');
-    console.log(basketResult);
-    console.log('basketResultNDS');
-    console.log(basketResultNDS);
-    console.log('basketInTotal');
-    console.log(basketInTotal);
+
 
 }
 countInTotal();
 
 function mult() {
-    console.log('mult');
     var quantitiesInput = $('.quantity');
     var arrayQuantity = [];
     for(var key in quantitiesInput){
@@ -81,8 +68,7 @@ function mult() {
     }
 
     $(arrayQuantity).each(function (i) {
-        console.log(i);
-        console.log(arrayQuantity[i]);
+
         var resInput = $('.result')[i];
         quantitiesInput = $('.quantity')[i];
 
@@ -91,19 +77,9 @@ function mult() {
 
         var onePriceInput = $('.cost')[i];
         var onePriceInputText = $(onePriceInput).text();
-        console.log($(resInput).text());
-        console.log($(onePriceInput).text());
+
         var onePrice = parseInt(onePriceInputText.substring(0, onePriceInputText.length -2));
         var res = onePrice * quantities;
-
-
-
-        console.log('onePrice');
-        console.log(onePrice);
-        console.log('quantities');
-        console.log(quantities);
-        console.log('res');
-        console.log(res);
 
         $(resInput).text(res + ' P');
 
@@ -112,7 +88,6 @@ function mult() {
 }
 
 (function () {
-    console.log('1');
     var inputCount = $('.quantity');
 
     var popupInput = $('.popup-quantity');
@@ -227,24 +202,8 @@ function mult() {
         $(tdInput).text($('.popup-quantity').text());
         $(tdResult).text(result + ' P');
 
-
-
-        // console.log(allResult);
-        // console.log('allResult');
-        // console.log(allResult);
-
-
-
-        // $(arrayResult).each(function (i) {
-        //     basketResult += parseInt($(arrayResult[i]).text().substring(0, $(arrayResult[i]).text().length-2));
-        // });
         countInTotal();
 
-
-        // console.log('array');
-        // console.log(basketResult);
-        // console.log(basketResultNDS);
-        // console.log(basketInTotal);
     });
     //отменить
     $('.popup__cancel, .popup-close').on('click', function (e) {
@@ -291,16 +250,37 @@ function mult() {
     $('.menu__link').on('click', function (e) {
         e.preventDefault();
 
+        var arrayBefore = [];
+        var before = $('.menu__item::before');
+        for(var key in before){
+            arrayBefore[key] = before[key];
+        }
+        console.log(arrayBefore);
+        console.log('before');
+        console.log(before);
+
         console.log('menu');
         var $this=$(this),
-            //menu = $this.closest('.menu'),
-            li = $this.closest('.menu__item'),
-            liNum = $this.eq();
-        console.log('liNum');
-        console.log(liNum);
+            li = $this.closest('.menu__item');
 
-        $(li).toggleClass('active').siblings().removeClass('active');
+        $(li).addClass('active').siblings().removeClass('active');
 
+        //создаем полосочку
+        var stick = $('<div>', {
 
+            attr: {
+                class: 'stick'
+            },
+            html: '<div class="stick"></div>',
+            css: {
+                'top':'-1px',
+                'left': '-3px',
+                'z-index': '11'
+            }
+
+        });
+
+        $(li).append(stick);
     })
+
 })();
